@@ -11,7 +11,7 @@ class Tecnologia(models.Model):
 
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     titulo = models.CharField(max_length=200)
-    tecnologia = models.CharField(max_length=15, choices=tecnologiaSeleccion, default='guitarra')
+    tecnologia = models.CharField(max_length=15, choices=tecnologiaSeleccion, default='tecnologia')
     marca = models.CharField(max_length=40)
     modelo = models.CharField(max_length=40)
     descripcion = models.TextField(null=True, blank=True)
