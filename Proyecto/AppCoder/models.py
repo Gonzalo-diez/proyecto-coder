@@ -20,7 +20,7 @@ class Tecnologia(models.Model):
     fechaPublicacion = models.DateTimeField(auto_now_add=True)
     telefonoContacto = models.IntegerField()
     emailContacto = models.EmailField()
-    imagenTecnologia = models.ImageField(null=True, blank=True, upload_to="img/")
+    imagenTecnologia = models.ImageField(null=True, blank=True, upload_to="C:/Users/gonza/Desktop/Proyecto-coder/Proyecto/AppCoder/static/AppCoder/img")
 
     class Meta:
         ordering = ['usuario', '-fechaPublicacion']

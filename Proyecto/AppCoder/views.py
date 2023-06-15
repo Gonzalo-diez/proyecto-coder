@@ -18,3 +18,6 @@ def listaOtros(request):
 
 def login(request):
     return render(request, "AppCoder/login.html")
+
+def registro(request):
+    return render(request, "AppCoder/registro.html")
