@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class Tecnologia(models.Model):
     tecnologiaSeleccion = (
@@ -20,7 +21,7 @@ class Tecnologia(models.Model):
     fechaPublicacion = models.DateTimeField(auto_now_add=True)
     telefonoContacto = models.IntegerField()
     emailContacto = models.EmailField()
-    imagenTecnologia = models.ImageField(null=True, blank=True, upload_to="C:/Users/gonza/Desktop/Proyecto-coder/Proyecto/AppCoder/static/AppCoder/img")
+    imagenTecnologia = models.ImageField(null=True, blank=True, upload_to="imagenes/")
 
     class Meta:
         ordering = ['usuario', '-fechaPublicacion']

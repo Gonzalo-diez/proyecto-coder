@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Tecnologia
 
 def inicio(request): 
     return render(request, "AppCoder/home.html")
@@ -8,7 +9,8 @@ def listaCelulares(request):
     return render(request, "AppCoder/listaCelulares.html")
 
 def listaConsolas(request):
-    return render(request, "AppCoder/listaConsolas.html")
+    consolas = Tecnologia.objects.all()
+    return render(request, "AppCoder/listaConsolas.html", {"consolas": consolas})
 
 def listaComputadoras(request):
     return render(request, "AppCoder/listaComputadoras.html")

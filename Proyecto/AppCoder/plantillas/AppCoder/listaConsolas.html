@@ -8,15 +8,17 @@
     <h2 class="text-center">Consolas</h2>
 
     <div class="row justify-content-center">
+      {% for consola in consolas %}
       <div class="col-md-4">
         <div class="card">
-          <img src="{{consola.imagenTecnologia}}" class="card-img-top" alt="{{consola.titulo}}">
+          <img src="{{ consola.get_image_url }}" class="card-img-top" alt="{{consola.titulo}}">
           <div class="card-body">
             <h5 class="card-title">{{consola.titulo}}</h5>
             <p>{{consola.marca}}</p>
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
   </div>
 </section>
