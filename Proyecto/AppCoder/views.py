@@ -4,7 +4,7 @@ from django.views import View
 from .models import Producto, Comentario
 from .forms import FormularioRegistroUsuario, FormularioNuevoProducto, FormularioComentario
 from django.views.generic import TemplateView, ListView, DetailView
-from django.views.generic.edit import CreateView 
+from django.views.generic.edit import CreateView, DeleteView 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
@@ -12,6 +12,32 @@ from django.contrib.auth import login
 
 class Inicio(LoginRequiredMixin, TemplateView):
     template_name = 'AppCoder/inicio.html'
+
+class RegistroPage(FormView):
+    template_name = 'AppCoder/registro.html'
+    form_class = FormularioRegistroUsuario
+    redirect_autheticated_user = True
+    success_url = reverse_lazy('Inicio')
+
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(RegistroPage, self).form_valid(form)
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('Inicio')
+        return super(RegistroPage, self).get(*args, **kwargs)
+
+class LoginPage(LoginView):
+    template_name = 'AppCoder/login.html'
+    fields = '__all__'
+    redirect_autheticated_user = True
+    success_url = reverse_lazy('Inicio')
+
+    def get_success_url(self):
+        return reverse_lazy('Inicio')
 
 class ConsolaPage(LoginRequiredMixin, ListView):
     context_object_name = 'consolas'
@@ -54,31 +80,20 @@ class ComputadoraDetalle(LoginRequiredMixin, DetailView):
     context_object_name = 'computadora'
     template_name = 'AppCoder/detalleComputadora.html'
 
-class RegistroPage(FormView):
-    template_name = 'AppCoder/registro.html'
-    form_class = FormularioRegistroUsuario
-    redirect_autheticated_user = True
+class ConsolaDelete(LoginRequiredMixin, DeleteView): 
+    model = Producto
     success_url = reverse_lazy('Inicio')
+    template_name = 'AppCoder/borradoConsola.html'
 
-    def form_valid(self, form):
-        user = form.save()
-        if user is not None:
-            login(self.request, user)
-        return super(RegistroPage, self).form_valid(form)
-
-    def get(self, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return redirect('Inicio')
-        return super(RegistroPage, self).get(*args, **kwargs)
-
-class LoginPage(LoginView):
-    template_name = 'AppCoder/login.html'
-    fields = '__all__'
-    redirect_autheticated_user = True
+class CelularDelete(LoginRequiredMixin, DeleteView): 
+    model = Producto
     success_url = reverse_lazy('Inicio')
+    template_name = 'AppCoder/borradoCelular.html'
 
-    def get_success_url(self):
-        return reverse_lazy('Inicio')
+class ComputadoraDelete(LoginRequiredMixin, DeleteView): 
+    model = Producto
+    success_url = reverse_lazy('Inicio')
+    template_name = 'AppCoder/borradoComputadora.html'
 
 class AgregarProducto(LoginRequiredMixin, View):
     form_class = FormularioNuevoProducto
@@ -99,7 +114,6 @@ class AgregarProducto(LoginRequiredMixin, View):
         else:
             print(form.errors)
         return render(request, self.template_name, {'form': form})
-
 
 class ComentarioPage(LoginRequiredMixin, CreateView):
     model = Comentario

@@ -21,6 +21,7 @@
                 <p>Precio: ${{ computadora.precio }}</p>
                 <p>Fecha de publicación: {{ computadora.fechaPublicacion }}</p>
                 <p>Contacto: {{ computadora.telefonoContacto }}, {{ computadora.emailContacto }}</p>
+                <button type="button" class="btn btn-danger"><a href="{% url 'BorrarComputadora' computadora.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Eliminar</a></button>
               </div>
             </div>
           </div>
