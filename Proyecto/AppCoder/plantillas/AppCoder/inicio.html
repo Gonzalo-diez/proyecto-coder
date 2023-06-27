@@ -38,28 +38,22 @@
         </div>
     </nav>
     {% block content %}
-    <section>
-      <div>
-        <div>
-          <h2>Bienvenido a MercadoExpress</h2>
-        </div>
-      </div>
-    </section>
 
-    <section>
-      <div>
-        <div class="text-center">
-          <p>¿Desea vender algún producto?</p>
-          <a href="{% url 'AgregarProducto' %}"><button type="submit" class="btn btn-primary">Agregalo por aqui</button></a>
+    <div class="container text-center container flex-grow-1 py-4 d-flex justify-content-center">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <h1>Bienvenido a MercadoExpress</h1>
+          <p class="lead">La mejor plataforma para comprar y vender productos de manera segura y confiable.</p>
+          <button type="button" class="btn btn-primary"><a href="{% url 'AgregarProducto'%}" class="link-dark link-offset-2 link-underline link-underline-opacity-0">Agregar publicación</a></button>
         </div>
       </div>
-    </section>
+    </div>
 
     {% endblock content %}
 
-    <footer>
-      <div>
-        <p>Copyright &copy; 2023 Gonzalo Juan Diez</p>
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container text-center">
+        <span class="text-muted">Copyright &copy; 2023 Gonzalo Juan Diez</span>
       </div>
     </footer>
 

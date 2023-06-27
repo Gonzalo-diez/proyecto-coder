@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Usuario(models.Model):
+    autor = models.OneToOneField(User, on_delete=models.CASCADE)
+    telefono = models.CharField(max_length=15)
+    direccion = models.CharField(max_length=100)
+    fecha_nacimiento = models.DateField()
+
+    def __str__(self):
+        return self.autor.username
+
 class Producto(models.Model):
     productoSeleccion = (
         ('celular', 'Celular'),

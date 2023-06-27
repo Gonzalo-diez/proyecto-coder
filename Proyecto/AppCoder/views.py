@@ -42,7 +42,7 @@ class ComputadoraPage(LoginRequiredMixin, ListView):
 class ConsolaDetalle(LoginRequiredMixin, DetailView):
     model = Producto
     context_object_name = 'consola'
-    template_name = 'AppCoder/detalleConsolas.html'
+    template_name = 'AppCoder/detalleConsola.html'
 
 class CelularDetalle(LoginRequiredMixin, DetailView):
     model = Producto

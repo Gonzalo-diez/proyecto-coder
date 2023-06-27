@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+
 <section>
   <div class="container">
     <h2 class="text-center">Celulares</h2>
@@ -14,13 +15,19 @@
           <img src="{{ celular.imagenProducto.url }}" class="card-img-top" alt="{{celular.titulo}}">
           <div class="card-body">
             <h5 class="card-title">{{celular.titulo}}</h5>
-            <p>{{celular.marca}}</p>
-            <p>{{celular.precio}}</p>
+            <p>Marca: {{celular.marca}}</p>
+            <p>Precio: {{celular.precio}}</p>
+            <button type="button" class="btn btn-primary btn-sm"><a href="{% url 'Celular' celular.id %}" class="link-dark link-offset-2 link-underline link-underline-opacity-0">Ver más</a></button>
           </div>
         </div>
       </div>
+      {% empty %}
+          <div class="col-12 text-center">
+            <p>No se ha encontrado ninguna publicación de este tipo.</p>
+          </div>
       {% endfor %}
     </div>
   </div>
 </section>
+
 {% endblock %}

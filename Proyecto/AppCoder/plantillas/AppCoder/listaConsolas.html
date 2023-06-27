@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+
 <section>
   <div class="container">
     <h2 class="text-center">Consolas</h2>
@@ -14,13 +15,19 @@
           <img src="{{ consola.imagenProducto.url }}" class="card-img-top" alt="{{consola.titulo}}">
           <div class="card-body">
             <h5 class="card-title">{{consola.titulo}}</h5>
-            <p>{{consola.marca}}</p>
-            <p>{{consola.precio}}</p>
+            <p>Marca: {{consola.marca}}</p>
+            <p>Precio: {{consola.precio}}</p>
+            <button type="button" class="btn btn-primary btn-sm"><a href="{% url 'Consola' consola.id %}" class="link-dark link-offset-2 link-underline link-underline-opacity-0">Ver más</a></button>
           </div>
         </div>
       </div>
+      {% empty %}
+          <div class="col-12 text-center">
+            <p>No se ha encontrado ninguna publicación de este tipo.</p>
+          </div>
       {% endfor %}
     </div>
   </div>
 </section>
+
 {% endblock %}
