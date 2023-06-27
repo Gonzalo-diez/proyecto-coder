@@ -1,21 +1,25 @@
-{% extends 'AppCoder/home.html' %}
+{% extends 'AppCoder/inicio.html' %}
 
 {% load static %}
 
 {% block content %}
 <section>
   <div class="container">
-    <h2 class="text-center">Celuares</h2>
+    <h2 class="text-center">Celulares</h2>
 
     <div class="row justify-content-center">
+      {% for celular in celulares %}
       <div class="col-md-4">
         <div class="card">
-          <img src="ruta-de-la-imagen-1.jpg" class="card-img-top" alt="Producto 1">
+          <img src="{{ celular.imagenProducto.url }}" class="card-img-top" alt="{{celular.titulo}}">
           <div class="card-body">
-            <h5 class="card-title">Producto 1</h5>
+            <h5 class="card-title">{{celular.titulo}}</h5>
+            <p>{{celular.marca}}</p>
+            <p>{{celular.precio}}</p>
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
   </div>
 </section>

@@ -1,4 +1,4 @@
-{% extends 'AppCoder/home.html' %}
+{% extends 'AppCoder/inicio.html' %}
 
 {% load static %}
 
@@ -11,10 +11,11 @@
       {% for consola in consolas %}
       <div class="col-md-4">
         <div class="card">
-          <img src="{{ consola.get_image_url }}" class="card-img-top" alt="{{consola.titulo}}">
+          <img src="{{ consola.imagenProducto.url }}" class="card-img-top" alt="{{consola.titulo}}">
           <div class="card-body">
             <h5 class="card-title">{{consola.titulo}}</h5>
             <p>{{consola.marca}}</p>
+            <p>{{consola.precio}}</p>
           </div>
         </div>
       </div>

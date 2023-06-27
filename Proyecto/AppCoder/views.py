@@ -1,25 +1,112 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Tecnologia
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.views import View
+from .models import Producto, Comentario
+from .forms import FormularioRegistroUsuario, FormularioNuevoProducto, FormularioComentario
+from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic.edit import CreateView 
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormView
+from django.contrib.auth import login
 
-def inicio(request): 
-    return render(request, "AppCoder/home.html")
+class Inicio(LoginRequiredMixin, TemplateView):
+    template_name = 'AppCoder/inicio.html'
 
-def listaCelulares(request):
-    return render(request, "AppCoder/listaCelulares.html")
+class ConsolaPage(LoginRequiredMixin, ListView):
+    context_object_name = 'consolas'
+    template_name = 'AppCoder/listaConsolas.html'
+    login_url = '/login/'
 
-def listaConsolas(request):
-    consolas = Tecnologia.objects.all()
-    return render(request, "AppCoder/listaConsolas.html", {"consolas": consolas})
+    def get_queryset(self):
+        return Producto.objects.filter(producto='consola')
 
-def listaComputadoras(request):
-    return render(request, "AppCoder/listaComputadoras.html")
 
-def listaOtros(request):
-    return render(request, "AppCoder/listaOtros")
+class CelularPage(LoginRequiredMixin, ListView):
+    context_object_name = 'celulares'
+    template_name = 'AppCoder/listaCelulares.html'
+    login_url = '/login/'
 
-def login(request):
-    return render(request, "AppCoder/login.html")
+    def get_queryset(self):
+        return Producto.objects.filter(producto='celular')
 
-def registro(request):
-    return render(request, "AppCoder/registro.html")
+class ComputadoraPage(LoginRequiredMixin, ListView):
+    context_object_name = 'computadoras'
+    template_name = 'AppCoder/listaComputadoras.html'
+    login_url = '/login/'
+
+    def get_queryset(self):
+        return Producto.objects.filter(producto='computadora')
+
+
+class ConsolaDetalle(LoginRequiredMixin, DetailView):
+    model = Producto
+    context_object_name = 'consola'
+    template_name = 'AppCoder/detalleConsolas.html'
+
+class CelularDetalle(LoginRequiredMixin, DetailView):
+    model = Producto
+    context_object_name = 'celular'
+    template_name = 'AppCoder/detalleCelular.html'
+
+class ComputadoraDetalle(LoginRequiredMixin, DetailView):
+    model = Producto
+    context_object_name = 'computadora'
+    template_name = 'AppCoder/detalleComputadora.html'
+
+class RegistroPage(FormView):
+    template_name = 'AppCoder/registro.html'
+    form_class = FormularioRegistroUsuario
+    redirect_autheticated_user = True
+    success_url = reverse_lazy('Inicio')
+
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(RegistroPage, self).form_valid(form)
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('Inicio')
+        return super(RegistroPage, self).get(*args, **kwargs)
+
+class LoginPage(LoginView):
+    template_name = 'AppCoder/login.html'
+    fields = '__all__'
+    redirect_autheticated_user = True
+    success_url = reverse_lazy('Inicio')
+
+    def get_success_url(self):
+        return reverse_lazy('Inicio')
+
+class AgregarProducto(LoginRequiredMixin, View):
+    form_class = FormularioNuevoProducto
+    template_name = 'AppCoder/agregarProducto.html'
+    success_url = reverse_lazy('Inicio')
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            publicacion = form.save(commit=False)
+            publicacion.usuario = request.user
+            publicacion.save()
+            return redirect(self.success_url)
+        else:
+            print(form.errors)
+        return render(request, self.template_name, {'form': form})
+
+
+class ComentarioPage(LoginRequiredMixin, CreateView):
+    model = Comentario
+    form_class = FormularioComentario
+    template_name = 'AppCoder/comentario.html'
+    success_url = reverse_lazy('Inicio')
+
+    def form_valid(self, form):
+        form.instance.comentario_id = self.kwargs['pk']
+        return super(ComentarioPage, self).form_valid(form)

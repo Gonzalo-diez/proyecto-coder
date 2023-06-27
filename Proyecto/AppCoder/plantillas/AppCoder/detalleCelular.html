@@ -1,24 +1,51 @@
-{% extends 'AppCoder/home.html' %}
+{% extends 'AppCoder/inicio.html' %}
 
-{% block content %}
-<section class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <h1 class="text-center mb-4">Producto en Venta</h1>
+{% block content %} 
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
             <div class="card">
-                <img src="https://via.placeholder.com/500x250.png?text=Imagen+del+producto" class="card-img-top" alt="Imagen del producto">
-                <div class="card-body">
-                    <h5 class="card-title">Producto de ejemplo</h5>
-                    <p class="card-text">Marca: XYZ</p>
-                    <p class="card-text">Modelo: ABC123</p>
-                    <p class="card-text">Descripción: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus elit a justo convallis, eu lobortis ex ultrices. Donec auctor bibendum justo, sed suscipit risus auctor vel.</p>
-                    <p class="card-text">Precio: $1,000</p>
-                    <p class="card-text">Teléfono de contacto: 123-456-7890</p>
-                    <p class="card-text">Email de contacto: contacto@ejemplo.com</p>
-                </div>
+              <div class="card-header">
+                <h3>{{ celular.titulo }}</h3>
+              </div>
+              <div class="card-body">
+                {% if celular.imagenProducto %}
+                  <img src="{{ celular.imagenProducto.url }}" alt="Imagen del producto" class="img-fluid">
+                {% endif %}
+                <h5>Marca: {{ celular.marca }}</h5>
+                <h5>Modelo: {{ celular.modelo }}</h5>
+                <p>Descripción: {{ celular.descripcion }}</p>
+                <p>Año: {{ celular.year }}</p>
+                <p>Precio: ${{ celular.precio }}</p>
+                <p>Fecha de publicación: {{ celular.fechaPublicacion }}</p>
+                <p>Contacto: {{ celular.telefonoContacto }}, {{ celular.emailContacto }}</p>
+              </div>
             </div>
+          </div>
         </div>
     </div>
 </section>
 
-{% endblock %}
+<section>
+    <div class="container mt-4">
+      <h4>Comentarios</h4>
+      {% if celular.comentarios.count > 0 %}
+        <ul class="list-group">
+          {% for comentario in celular.comentarios.all %}
+            <li class="list-group-item">
+              <h5>{{ comentario.nombre }}</h5>
+              <p>{{ comentario.mensaje }}</p>
+              <p>Fecha de comentario: {{ comentario.fechaComentario }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No se ha comentado sobre este producto.</p>
+      {% endif %}
+      <a href="{% url 'comentario' celular.pk %}">Agregar un comentario</a>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,12 +1,18 @@
 from django.urls import path
-from AppCoder.views import inicio, listaCelulares, listaComputadoras, listaConsolas, listaOtros, login, registro
+from AppCoder.views import Inicio, CelularPage, ComputadoraPage, ConsolaPage, ConsolaDetalle, CelularDetalle, ComputadoraDetalle, ComentarioPage, LoginPage, RegistroPage, AgregarProducto
 
 urlpatterns = [
-    path('inicio/', inicio, name="Inicio"),
-    path('listaCelulares/', listaCelulares, name="ListaCelulares"),
-    path('listaComputadoras/', listaComputadoras, name="ListaComputadoras"),
-    path('listaConsolas/', listaConsolas, name="ListaConsolas"),
-    path('listaOtros/', listaOtros, name="ListaOtros"),
-    path('login/', login, name="Login"),
-    path('registro/', registro, name="Registro")
+    path('inicio/', Inicio.as_view(), name="Inicio"),
+    path('listaCelulares/', CelularPage.as_view(), name="ListaCelulares"),
+    path('listaComputadoras/', ComputadoraPage.as_view(), name="ListaComputadoras"),
+    path('listaConsolas/', ConsolaPage.as_view(), name="ListaConsolas"),
+    path('detalleCelular/<int:pk>/', CelularDetalle.as_view(), name="Celular"),
+    path('listaComputadoras/<int:pk>/', ComputadoraDetalle.as_view(), name="Computadora"),
+    path('listaConsolas/<int:pk>/', ConsolaDetalle.as_view(), name="Consola"),
+    path('detalleConsola/<int:pk>/comentario/', ComentarioPage.as_view(), name="comentario"),
+    path('detalleCelular/<int:pk>/comentario/', ComentarioPage.as_view(), name="comentario"),
+    path('detalleComputadora/<int:pk>/comentario/', ComentarioPage.as_view(), name="comentario"),
+    path('login/', LoginPage.as_view(), name="Login"),
+    path('registro/', RegistroPage.as_view(), name="Registro"),
+    path('agregarProducto/', AgregarProducto.as_view(), name="AgregarProducto")
 ]
