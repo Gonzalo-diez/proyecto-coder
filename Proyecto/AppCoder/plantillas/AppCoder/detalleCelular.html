@@ -21,6 +21,7 @@
                 <p>Precio: ${{ celular.precio }}</p>
                 <p>Fecha de publicación: {{ celular.fechaPublicacion }}</p>
                 <p>Contacto: {{ celular.telefonoContacto }}, {{ celular.emailContacto }}</p>
+                <button type="button" class="btn btn-primary"><a href="{% url 'EditarCelular' computadora.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Editar</a></button>
                 <button type="button" class="btn btn-danger"><a href="{% url 'BorrarCelular' celular.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Eliminar</a></button>
               </div>
             </div>

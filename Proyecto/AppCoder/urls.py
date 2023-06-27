@@ -1,5 +1,5 @@
 from django.urls import path
-from AppCoder.views import Inicio, CelularPage, ComputadoraPage, ConsolaPage, ConsolaDetalle, CelularDetalle, ComputadoraDetalle, ConsolaDelete, ComputadoraDelete, CelularDelete, ComentarioPage, LoginPage, RegistroPage, AgregarProducto
+from AppCoder.views import Inicio, CelularPage, ComputadoraPage, ConsolaPage, ConsolaDetalle, CelularDetalle, ComputadoraDetalle, ConsolaEditar, CelularEditar, ComputadoraEditar, ConsolaDelete, ComputadoraDelete, CelularDelete, ComentarioPage, LoginPage, RegistroPage, AgregarProducto
 
 urlpatterns = [
     path('inicio/', Inicio.as_view(), name="Inicio"),
@@ -12,6 +12,9 @@ urlpatterns = [
     path('detalleConsola/<int:pk>/comentario/', ComentarioPage.as_view(), name="comentario"),
     path('detalleCelular/<int:pk>/comentario/', ComentarioPage.as_view(), name="comentario"),
     path('detalleComputadora/<int:pk>/comentario/', ComentarioPage.as_view(), name="comentario"),
+    path('editarConsola/<int:pk>/', ConsolaEditar.as_view(), name="EditarConsola"),
+    path('editarCelular/<int:pk>/', CelularEditar.as_view(), name="EditarCelular"),
+    path('editarComputadora/<int:pk>/', ComputadoraEditar.as_view(), name="EditarComputadora"),
     path('borradoConsola/<int:pk>/', ConsolaDelete.as_view(), name="BorrarConsola"),
     path('borradoCelular/<int:pk>/', CelularDelete.as_view(), name="BorrarCelular"),
     path('borradoComputadora/<int:pk>/', ComputadoraDelete.as_view(), name="BorrarComputadora"),

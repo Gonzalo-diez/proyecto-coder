@@ -4,7 +4,7 @@ from django.views import View
 from .models import Producto, Comentario
 from .forms import FormularioRegistroUsuario, FormularioNuevoProducto, FormularioComentario
 from django.views.generic import TemplateView, ListView, DetailView
-from django.views.generic.edit import CreateView, DeleteView 
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
@@ -79,6 +79,24 @@ class ComputadoraDetalle(LoginRequiredMixin, DetailView):
     model = Producto
     context_object_name = 'computadora'
     template_name = 'AppCoder/detalleComputadora.html'
+
+class ConsolaEditar(LoginRequiredMixin, UpdateView):
+    model = Producto
+    form_class = FormularioNuevoProducto
+    template_name = 'AppCoder/edicionConsola.html'
+    success_url = reverse_lazy('Inicio')
+
+class CelularEditar(LoginRequiredMixin, UpdateView):
+    model = Producto
+    form_class = FormularioNuevoProducto
+    template_name = 'AppCoder/edicionCelular.html'
+    success_url = reverse_lazy('Inicio')
+
+class ComputadoraEditar(LoginRequiredMixin, UpdateView):
+    model = Producto
+    form_class = FormularioNuevoProducto
+    template_name = 'AppCoder/edicionComputadora.html'
+    success_url = reverse_lazy('Inicio')
 
 class ConsolaDelete(LoginRequiredMixin, DeleteView): 
     model = Producto

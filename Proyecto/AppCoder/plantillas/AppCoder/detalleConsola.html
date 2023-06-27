@@ -21,6 +21,7 @@
                 <p>Precio: ${{ consola.precio }}</p>
                 <p>Fecha de publicación: {{ consola.fechaPublicacion }}</p>
                 <p>Contacto: {{ consola.telefonoContacto }}, {{ consola.emailContacto }}</p>
+                <button type="button" class="btn btn-primary"><a href="{% url 'EditarConsola' consola.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Editar</a></button>
                 <button type="button" class="btn btn-danger"><a href="{% url 'BorrarConsola' consola.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Eliminar</a></button>
               </div>
             </div>

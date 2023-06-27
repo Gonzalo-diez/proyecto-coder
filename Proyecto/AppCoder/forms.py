@@ -27,7 +27,7 @@ class FormularioNuevoProducto(forms.ModelForm):
             'marca' : forms.TextInput(attrs={'class': 'form-control'}),
             'modelo' : forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion' : forms.Textarea(attrs={'class': 'form-control'}),
-            'year' : forms.TextInput(attrs={'class': 'form-control'}),
+            'year' : forms.NumberInput(attrs={'class': 'form-control'}),
             'precio' : forms.TextInput(attrs={'class': 'form-control'}),
             'telefonoContacto' : forms.TextInput(attrs={'class': 'form-control'}),
             'emailContacto' : forms.TextInput(attrs={'class': 'form-control'}),

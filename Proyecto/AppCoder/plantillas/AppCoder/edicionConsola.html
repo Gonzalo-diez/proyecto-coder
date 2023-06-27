@@ -5,45 +5,11 @@
     <div class="container">
         <h4>Editar consola</h4>
         <div class="form-group">
-            <form method="post">
-                <div class="mb-3">
-                    <label for="cel_title" class="form-label">Titulo</label>
-                    <input type="email" class="form-control" id="cel_title" placeholder="Ingrese el titulo del consola" required>
-                </div>
-                <div class="mb-3">
-                    <label for="cel_brand" class="form-label">Marca</label>
-                    <input type="email" class="form-control" id="cel_brand" placeholder="Ingrese la marca del consola" required>
-                </div>
-                <div class="mb-3">
-                    <label for="cel_type" class="form-label">Modelo</label>
-                    <input type="email" class="form-control" id="email" placeholder="Ingrese el modelo del consola" required>
-                </div>
-                <div class="mb-3">
-                    <label for="cel_info" class="form-label">Información de la consola</label>
-                    <textarea class="form-control" rows="5" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="cel_year" class="form-label">Año</label>
-                    <input type="number" class="form-control" id="cel_year" placeholder="Ingrese el año del consola" required>
-                </div>
-                <div class="mb-3">
-                    <label for="cel_price" class="form-label">Precio</label>
-                    <input type="number" class="form-control" id="cel_year" placeholder="Ingrese el precio del consola" required>
-                </div>
-                <div class="mb-3">
-                    <label for="contact" class="form-label">Telefono de contacto</label>
-                    <input type="number" class="form-control" id="contact" placeholder="Ingrese telefono de contacto" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email de contacto</label>
-                    <input type="email" class="form-control" id="email" placeholder="Ingrese su email de contacto" required>
-                </div>
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                {{ form.as_p }}
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
         </div>    
-    </div>
-    <div class="container">
-        <h4>No tienes acceso a esta página!</h4>
     </div>
 </section>
 {% endblock %}
