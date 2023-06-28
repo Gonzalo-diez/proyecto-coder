@@ -21,8 +21,10 @@
                 <p>Precio: ${{ celular.precio }}</p>
                 <p>Fecha de publicación: {{ celular.fechaPublicacion }}</p>
                 <p>Contacto: {{ celular.telefonoContacto }}, {{ celular.emailContacto }}</p>
-                <button type="button" class="btn btn-primary"><a href="{% url 'EditarCelular' computadora.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Editar</a></button>
-                <button type="button" class="btn btn-danger"><a href="{% url 'BorrarCelular' celular.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Eliminar</a></button>
+                {% if object.usuario == user %}
+                  <button type="button" class="btn btn-primary"><a href="{% url 'editarCelular' computadora.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Editar</a></button>
+                  <button type="button" class="btn btn-danger"><a href="{% url 'borrarCelular' celular.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Eliminar</a></button>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -46,7 +48,11 @@
       {% else %}
         <p>No se ha comentado sobre este producto.</p>
       {% endif %}
-      <a href="{% url 'comentario' celular.pk %}">Agregar un comentario</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'comentario' celular.pk %}">Agregar un comentario</a>
+      {% else %} 
+        <p>Debe <a href="{% url 'login' %}">iniciar sesión</a> o <a href="{% url 'registro' %}"></a></p>
+      {% endif %}
     </div>
 </section>
 

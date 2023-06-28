@@ -12,26 +12,26 @@
 <body class="bg-light">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'Inicio' %}">MercadoExpress</a>
+          <a class="navbar-brand" href="{% url 'inicio' %}">MercadoExpress</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'Inicio' %}">Inicio</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'ListaComputadoras' %}">Computadora</a>
+                <a class="nav-link" href="{% url 'listaComputadoras' %}">Computadora</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'ListaCelulares' %}">Celulares</a>
+                <a class="nav-link" href="{% url 'listaCelulares' %}">Celulares</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'ListaConsolas' %}">Consolas</a>
+                <a class="nav-link" href="{% url 'listaConsolas' %}">Consolas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'SobreMi' %}">Sobre mi</a>
+                <a class="nav-link" href="{% url 'sobreMi' %}">Sobre mi</a>
               </li>
               {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
@@ -44,7 +44,7 @@
                 </li>
               {% else %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'Login' %}"><box-icon name='user'></box-icon></a>
+                  <a class="nav-link" href="{% url 'login' %}"><box-icon name='user'></box-icon></a>
                 </li>
               {% endif %}
             </ul>
@@ -58,7 +58,12 @@
         <div class="col-lg-6 offset-lg-3">
           <h1>Bienvenido a MercadoExpress</h1>
           <p class="lead">La mejor plataforma para comprar y vender productos de manera segura y confiable.</p>
-          <button type="button" class="btn btn-primary"><a href="{% url 'AgregarProducto'%}" class="link-dark link-offset-2 link-underline link-underline-opacity-0">Agregar publicación</a></button>
+          {% if user.is_authenticated %}
+            <button type="button" class="btn btn-primary"><a href="{% url 'agregarProducto'%}" class="link-dark link-offset-2 link-underline link-underline-opacity-0">Agregar publicación</a></button>
+          {% else %} 
+            <p>Para agregar algun producto, debe tener una cuenta</p>
+            <button type="button" class="btn btn-primary"><a href="{% url 'login' %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Iniciar sesión</a></button>
+          {% endif %}
         </div>
       </div>
     </div>

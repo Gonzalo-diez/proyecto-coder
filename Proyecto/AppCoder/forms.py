@@ -21,7 +21,7 @@ class FormularioNuevoProducto(forms.ModelForm):
         fields = ('usuario', 'titulo', 'producto', 'marca', 'modelo', 'descripcion', 'year', 'precio', 'telefonoContacto', 'emailContacto', 'imagenProducto')
 
         widgets = {
-            'usuario': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'usuario_id', 'type':'hidden'}),
+            'usuario': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'id', 'type':'hidden'}),
             'titulo' : forms.TextInput(attrs={'class': 'form-control'}),
             'producto' : forms.Select(attrs={'class': 'form-control'}),
             'marca' : forms.TextInput(attrs={'class': 'form-control'}),

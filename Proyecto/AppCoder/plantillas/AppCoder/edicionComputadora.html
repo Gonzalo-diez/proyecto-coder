@@ -3,14 +3,18 @@
 {% block content %}
 <section>
     <div class="container">
-        <h4>Editar computadora</h4>
-        <div class="form-group">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </form>            
-        </div>    
+        {% if object.usuario == user %}
+            <h4>Editar computadora</h4>
+            <div class="form-group">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>            
+            </div>    
+        {% else %} 
+            <p>No tienes permiso para editar este producto.</p>
+        {% endif %}
     </div>
 </section>
 {% endblock %}
