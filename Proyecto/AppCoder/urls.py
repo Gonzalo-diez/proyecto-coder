@@ -8,7 +8,7 @@ urlpatterns = [
     # Login y registro de usuarios
     path('login/', LoginPage.as_view(), name="login"),
     path('registro/', RegistroPage.as_view(), name="registro"),
-    path('logout/', LogoutView.as_view(), name="logout"),
+    path('logout/', LogoutView.as_view(next_page='inicio'), name="logout"),
     # Sección sobre mi
     path('sobreMi/', SobreMi, name="sobreMi"),
     # Crear nuevos productos
