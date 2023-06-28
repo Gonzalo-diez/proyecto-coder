@@ -1,8 +1,14 @@
 from django.urls import path
-from AppCoder.views import Inicio, CelularPage, ComputadoraPage, ConsolaPage, ConsolaDetalle, CelularDetalle, ComputadoraDetalle, ConsolaEditar, CelularEditar, ComputadoraEditar, ConsolaDelete, ComputadoraDelete, CelularDelete, ComentarioPage, LoginPage, RegistroPage, AgregarProducto
+from django.contrib.auth.views import LogoutView
+from AppCoder.views import Inicio, CelularPage, ComputadoraPage, ConsolaPage, ConsolaDetalle, CelularDetalle, ComputadoraDetalle, ConsolaEditar, CelularEditar, ComputadoraEditar, ConsolaDelete, ComputadoraDelete, CelularDelete, ComentarioPage, LoginPage, RegistroPage, AgregarProducto, SobreMi
 
 urlpatterns = [
     path('inicio/', Inicio.as_view(), name="Inicio"),
+    path('login/', LoginPage.as_view(), name="Login"),
+    path('registro/', RegistroPage.as_view(), name="Registro"),
+    path('logout/', LogoutView.as_view(), name="logout"),
+    path('sobreMi/', SobreMi, name="SobreMi"),
+    path('agregarProducto/', AgregarProducto.as_view(), name="AgregarProducto"),
     path('listaCelulares/', CelularPage.as_view(), name="ListaCelulares"),
     path('listaComputadoras/', ComputadoraPage.as_view(), name="ListaComputadoras"),
     path('listaConsolas/', ConsolaPage.as_view(), name="ListaConsolas"),
@@ -17,8 +23,5 @@ urlpatterns = [
     path('editarComputadora/<int:pk>/', ComputadoraEditar.as_view(), name="EditarComputadora"),
     path('borradoConsola/<int:pk>/', ConsolaDelete.as_view(), name="BorrarConsola"),
     path('borradoCelular/<int:pk>/', CelularDelete.as_view(), name="BorrarCelular"),
-    path('borradoComputadora/<int:pk>/', ComputadoraDelete.as_view(), name="BorrarComputadora"),
-    path('login/', LoginPage.as_view(), name="Login"),
-    path('registro/', RegistroPage.as_view(), name="Registro"),
-    path('agregarProducto/', AgregarProducto.as_view(), name="AgregarProducto")
+    path('borradoComputadora/<int:pk>/', ComputadoraDelete.as_view(), name="BorrarComputadora")
 ]

@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
 from django.contrib.auth import login
 
-class Inicio(LoginRequiredMixin, TemplateView):
+class Inicio(TemplateView):
     template_name = 'AppCoder/inicio.html'
 
 class RegistroPage(FormView):
@@ -142,3 +142,6 @@ class ComentarioPage(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.comentario_id = self.kwargs['pk']
         return super(ComentarioPage, self).form_valid(form)
+
+def SobreMi(request):
+    return render(request, 'AppCoder/sobremi.html')

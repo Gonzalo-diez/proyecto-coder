@@ -31,8 +31,22 @@
                 <a class="nav-link" href="{% url 'ListaConsolas' %}">Consolas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'Login' %}"><box-icon name='user'></box-icon></a>
+                <a class="nav-link" href="{% url 'SobreMi' %}">Sobre mi</a>
               </li>
+              {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <box-icon name='user'></box-icon>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>
+                  </div>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Login' %}"><box-icon name='user'></box-icon></a>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
