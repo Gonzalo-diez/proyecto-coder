@@ -56,10 +56,14 @@
       </form>     
     </div>
   {% else %} 
-    <div class="container">
-      <p class="text-center">Usted no tiene una cuenta activa</p>
-      <button class="btn btn-primary" type="button"><a href="{% url 'login' %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Iniciar sesión</a></button>
-    </div>
+    <div class="container d-flex flex-column align-items-center">
+      <div>
+        <p class="text-center">Usted no tiene una cuenta activa</p>
+        <button class="btn btn-primary" type="button">
+          <a href="{% url 'login' %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Iniciar sesión</a>
+        </button>
+      </div>
+    </div>  
   {% endif %}
 </section>
 

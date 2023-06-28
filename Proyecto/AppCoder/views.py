@@ -81,7 +81,7 @@ class ComputadoraDetalle(DetailView):
     context_object_name = 'computadora'
     template_name = 'AppCoder/detalleComputadora.html'
 
-class ConsolaEditar(LoginRequiredMixin, UpdateView):
+class ConsolaEditar(UpdateView):
     model = Producto
     form_class = FormularioNuevoProducto
     template_name = 'AppCoder/edicionConsola.html'
@@ -93,7 +93,7 @@ class ConsolaEditar(LoginRequiredMixin, UpdateView):
             raise Http404("No tienes permiso para editar este producto.")
         return obj
 
-class CelularEditar(LoginRequiredMixin, UpdateView):
+class CelularEditar(UpdateView):
     model = Producto
     form_class = FormularioNuevoProducto
     template_name = 'AppCoder/edicionCelular.html'
@@ -105,7 +105,7 @@ class CelularEditar(LoginRequiredMixin, UpdateView):
             raise Http404("No tienes permiso para editar este producto.")
         return obj
 
-class ComputadoraEditar(LoginRequiredMixin, UpdateView):
+class ComputadoraEditar(UpdateView):
     model = Producto
     form_class = FormularioNuevoProducto
     template_name = 'AppCoder/edicionComputadora.html'
@@ -117,22 +117,22 @@ class ComputadoraEditar(LoginRequiredMixin, UpdateView):
             raise Http404("No tienes permiso para editar este producto.")
         return obj
 
-class ConsolaDelete(LoginRequiredMixin, DeleteView): 
+class ConsolaDelete(DeleteView): 
     model = Producto
     success_url = reverse_lazy('inicio')
     template_name = 'AppCoder/borradoConsola.html'
 
-class CelularDelete(LoginRequiredMixin, DeleteView): 
+class CelularDelete(DeleteView): 
     model = Producto
     success_url = reverse_lazy('Inicio')
     template_name = 'AppCoder/borradoCelular.html'
 
-class ComputadoraDelete(LoginRequiredMixin, DeleteView): 
+class ComputadoraDelete(DeleteView): 
     model = Producto
     success_url = reverse_lazy('inicio')
     template_name = 'AppCoder/borradoComputadora.html'
 
-class AgregarProducto(LoginRequiredMixin, View):
+class AgregarProducto(View):
     form_class = FormularioNuevoProducto
     template_name = 'AppCoder/agregarProducto.html'
     success_url = reverse_lazy('inicio')
@@ -152,7 +152,7 @@ class AgregarProducto(LoginRequiredMixin, View):
             print(form.errors)
         return render(request, self.template_name, {'form': form})
 
-class ComentarioPage(LoginRequiredMixin, CreateView):
+class ComentarioPage(CreateView):
     model = Comentario
     form_class = FormularioComentario
     template_name = 'AppCoder/comentario.html'
