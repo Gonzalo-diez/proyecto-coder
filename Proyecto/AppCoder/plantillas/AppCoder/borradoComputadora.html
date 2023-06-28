@@ -2,16 +2,22 @@
 
 {% block content %}
 <section>
-    <div class="container text-center">
+    {% if object.usuario == user %}
+        <div class="container text-center">
 
-        <form method="post">{% csrf_token %}
-            <h4>Estás seguro(a) que deseas borrar la computadora {{computadora.marca}} {{computadora.modelo}}?</h4>
-            <p>
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-            </p>
-        </form>
-        
-    </div>
+            <form method="post">{% csrf_token %}
+                <h4>Estás seguro(a) que deseas borrar la computadora {{computadora.marca}} {{computadora.modelo}}?</h4>
+                <p>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </p>
+            </form>
+            
+        </div>
+    {% else %} 
+        <div class="container">
+            <p>Usted no es el creador de esta publicación</p>
+        </div>
+    {% endif %}
 </section>
 
 {% endblock %}

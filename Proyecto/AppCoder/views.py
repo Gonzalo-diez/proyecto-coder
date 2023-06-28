@@ -40,7 +40,7 @@ class LoginPage(LoginView):
     def get_success_url(self):
         return reverse_lazy('inicio')
 
-class ConsolaPage(LoginRequiredMixin, ListView):
+class ConsolaPage(ListView):
     context_object_name = 'consolas'
     template_name = 'AppCoder/listaConsolas.html'
     login_url = '/login/'
@@ -49,7 +49,7 @@ class ConsolaPage(LoginRequiredMixin, ListView):
         return Producto.objects.filter(producto='consola')
 
 
-class CelularPage(LoginRequiredMixin, ListView):
+class CelularPage(ListView):
     context_object_name = 'celulares'
     template_name = 'AppCoder/listaCelulares.html'
     login_url = '/login/'
@@ -57,7 +57,7 @@ class CelularPage(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Producto.objects.filter(producto='celular')
 
-class ComputadoraPage(LoginRequiredMixin, ListView):
+class ComputadoraPage(ListView):
     context_object_name = 'computadoras'
     template_name = 'AppCoder/listaComputadoras.html'
     login_url = '/login/'
@@ -66,17 +66,17 @@ class ComputadoraPage(LoginRequiredMixin, ListView):
         return Producto.objects.filter(producto='computadora')
 
 
-class ConsolaDetalle(LoginRequiredMixin, DetailView):
+class ConsolaDetalle(DetailView):
     model = Producto
     context_object_name = 'consola'
     template_name = 'AppCoder/detalleConsola.html'
 
-class CelularDetalle(LoginRequiredMixin, DetailView):
+class CelularDetalle(DetailView):
     model = Producto
     context_object_name = 'celular'
     template_name = 'AppCoder/detalleCelular.html'
 
-class ComputadoraDetalle(LoginRequiredMixin, DetailView):
+class ComputadoraDetalle(DetailView):
     model = Producto
     context_object_name = 'computadora'
     template_name = 'AppCoder/detalleComputadora.html'

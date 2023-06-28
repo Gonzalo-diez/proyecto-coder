@@ -14,8 +14,7 @@ class Producto(models.Model):
     productoSeleccion = (
         ('celular', 'Celular'),
         ('computadora', 'Computadora'),
-        ('consola', 'Consola'),
-        ('otro', 'Otro')
+        ('consola', 'Consola')
     )
 
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
