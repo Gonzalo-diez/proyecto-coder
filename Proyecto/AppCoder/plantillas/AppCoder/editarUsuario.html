@@ -1,0 +1,26 @@
+{% extends 'AppCoder/inicio.html' %}
+
+{% block content %} 
+
+<section>
+    {% if user.is_authenticated %}
+        <div class="container">
+            <div class="text-center">
+                <h4>Editar usuario</h4>
+                <div class="form-group">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% else %} 
+        <div class="container">
+            <p class="text-center">Usted no tiene una cuenta</p>
+        </div>
+    {% endif %}
+</section>
+
+{% endblock content %}

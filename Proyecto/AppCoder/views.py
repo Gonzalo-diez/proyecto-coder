@@ -3,11 +3,10 @@ from django.http import Http404
 from django.urls import reverse_lazy
 from django.views import View
 from .models import Producto, Comentario
-from .forms import FormularioRegistroUsuario, FormularioNuevoProducto, FormularioComentario
+from .forms import FormularioRegistroUsuario, FormularioNuevoProducto, FormularioComentario, FormularioCambioPassword, FormularioEdicion
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.views.generic.edit import FormView
 from django.contrib.auth import login
 
@@ -39,6 +38,22 @@ class LoginPage(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('inicio')
+    
+class EditarUsuario(UpdateView):
+    form_class = FormularioEdicion
+    template_name= 'AppCoder/editarUsuario.html'
+    success_url = reverse_lazy('inicio')
+
+    def get_object(self):
+        return self.request.user
+ 
+class CambiarPassword(PasswordChangeView):
+    form_class = FormularioCambioPassword
+    template_name = 'AppCoder/cambiopassword.html'
+    success_url = reverse_lazy('inicio')
+
+def Ajustes(request):
+    return render(request, 'AppCoder/ajustes.html')
 
 class ConsolaPage(ListView):
     context_object_name = 'consolas'

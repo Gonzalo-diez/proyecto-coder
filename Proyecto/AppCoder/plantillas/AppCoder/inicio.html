@@ -40,6 +40,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>
+                    <a class="dropdown-item" href="{% url 'ajuste' %}">Ajustes</a>
                   </div>
                 </li>
               {% else %}
@@ -59,7 +60,7 @@
           <h1>Bienvenido a MercadoExpress</h1>
           <p class="lead">La mejor plataforma para comprar y vender productos de manera segura y confiable.</p>
           {% if user.is_authenticated %}
-            <button type="button" class="btn btn-primary"><a href="{% url 'agregarProducto'%}" class="link-dark link-offset-2 link-underline link-underline-opacity-0">Agregar publicación</a></button>
+            <button type="button" class="btn btn-primary"><a href="{% url 'agregarProducto'%}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Agregar publicación</a></button>
           {% else %} 
             <p>Para agregar algun producto, debe tener una cuenta</p>
             <button type="button" class="btn btn-primary"><a href="{% url 'login' %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Iniciar sesión</a></button>

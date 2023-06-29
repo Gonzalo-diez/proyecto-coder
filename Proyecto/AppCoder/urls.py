@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-from AppCoder.views import Inicio, CelularPage, ComputadoraPage, ConsolaPage, ConsolaDetalle, CelularDetalle, ComputadoraDetalle, ConsolaEditar, CelularEditar, ComputadoraEditar, ConsolaDelete, ComputadoraDelete, CelularDelete, ComentarioPage, LoginPage, RegistroPage, AgregarProducto, SobreMi
+from AppCoder.views import Inicio, CelularPage, ComputadoraPage, ConsolaPage, ConsolaDetalle, CelularDetalle, ComputadoraDetalle, ConsolaEditar, CelularEditar, ComputadoraEditar, ConsolaDelete, ComputadoraDelete, CelularDelete, ComentarioPage, LoginPage, RegistroPage, CambiarPassword, EditarUsuario, AgregarProducto, SobreMi, Ajustes
 
 urlpatterns = [
     # Menu y inicio
@@ -9,6 +9,9 @@ urlpatterns = [
     path('login/', LoginPage.as_view(), name="login"),
     path('registro/', RegistroPage.as_view(), name="registro"),
     path('logout/', LogoutView.as_view(next_page='inicio'), name="logout"),
+    path('ajustes/', Ajustes, name="ajuste"),
+    path('cambiarPassword/', CambiarPassword.as_view(),  name="cambiarPassword"),
+    path('editarUsuario/', EditarUsuario.as_view(), name="editarUsuario"),
     # Sección sobre mi
     path('sobreMi/', SobreMi, name="sobreMi"),
     # Crear nuevos productos
