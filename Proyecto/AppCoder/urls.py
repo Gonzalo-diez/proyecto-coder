@@ -4,7 +4,7 @@ from AppCoder.views import Inicio, CelularPage, ComputadoraPage, ConsolaPage, Co
 
 urlpatterns = [
     # Menu y inicio
-    path('inicio/', Inicio.as_view(), name="inicio"),
+    path('', Inicio.as_view(), name="inicio"),
     # Login y registro de usuarios
     path('login/', LoginPage.as_view(), name="login"),
     path('registro/', RegistroPage.as_view(), name="registro"),
