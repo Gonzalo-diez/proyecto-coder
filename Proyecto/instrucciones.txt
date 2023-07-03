@@ -1,0 +1,20 @@
+Este es el proyecto final de django:
+
+Se utilizo para Front End:
+- HTML
+- JavaScript
+- CSS
+- Bootstrap
+
+Se utilizo para Back End: 
+- Python
+- SQL
+
+
+El proyecto es una página de venta de tecnologia, en donde una vez el usuario este logueado o registrado:
+- Editar su perfil 
+- Cambiar su contraseña
+- Agregar un producto tecnologico
+- Editar su producto tecnologico
+- Eliminar su producto tecnologico
+- Comentar sobre algun producto
