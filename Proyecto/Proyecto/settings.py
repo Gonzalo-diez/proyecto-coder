@@ -130,4 +130,7 @@ LOGIN_URL = '/login/'
 
 MEDIA_URL = '/imagenes/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'AppCoder/static/AppCoder')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'AppCoder/media/')
+
+AVATAR_UPLOAD_PATH = 'avatares/'
+IMAGE_UPLOAD_PATH = 'images/'

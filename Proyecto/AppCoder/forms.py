@@ -10,10 +10,11 @@ class FormularioRegistroUsuario(UserCreationForm):
     username = forms.CharField(max_length=20, label='Usuario', widget=forms.TextInput(attrs={'class':'form-control'}))
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    avatar = forms.ImageField(label='Avatar', required=False)
     
     class Meta:
         model = User
-        fields = ('email', 'username', 'first_name', 'last_name', 'password1', 'password2')
+        fields = ('email', 'username', 'first_name', 'last_name', 'password1', 'password2', 'avatar')
 
 class FormularioNuevoProducto(forms.ModelForm):
     class Meta:

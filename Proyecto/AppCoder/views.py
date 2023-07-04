@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.views import View
-from .models import Producto, Comentario
+from .models import Producto, Comentario, Usuario
 from .forms import FormularioRegistroUsuario, FormularioNuevoProducto, FormularioComentario, FormularioCambioPassword, FormularioEdicion
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -22,6 +22,11 @@ class RegistroPage(FormView):
     def form_valid(self, form):
         user = form.save()
         if user is not None:
+            usuario = Usuario.objects.create(autor=user)
+            avatar = form.cleaned_data['avatar']
+            if avatar:
+                usuario.avatar = avatar
+                usuario.save()
             login(self.request, user)
         return super(RegistroPage, self).form_valid(form)
 
@@ -46,7 +51,7 @@ class EditarUsuario(UpdateView):
 
     def get_object(self):
         return self.request.user
- 
+    
 class CambiarPassword(PasswordChangeView):
     form_class = FormularioCambioPassword
     template_name = 'AppCoder/cambiopassword.html'

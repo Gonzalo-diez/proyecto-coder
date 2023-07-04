@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 
 class Usuario(models.Model):
     autor = models.OneToOneField(User, on_delete=models.CASCADE)
-    telefono = models.CharField(max_length=15)
-    direccion = models.CharField(max_length=100)
-    fecha_nacimiento = models.DateField()
+    avatar = models.ImageField(null=True, blank=True, upload_to="avatares/")
 
     def __str__(self):
         return self.autor.username
@@ -28,7 +26,7 @@ class Producto(models.Model):
     fechaPublicacion = models.DateTimeField(auto_now_add=True)
     telefonoContacto = models.IntegerField()
     emailContacto = models.EmailField()
-    imagenProducto = models.ImageField(null=True, blank=True, upload_to="imagenes/")
+    imagenProducto = models.ImageField(null=True, blank=True, upload_to="images/")
 
     class Meta:
         ordering = ['usuario', '-fechaPublicacion']
