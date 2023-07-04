@@ -36,7 +36,8 @@
               {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <box-icon name='user'></box-icon>
+                    <img src="{{ user.usuario.avatar.url }}" alt="avatar" style="width: 30px; height: 30px; object-fit: cover;">
+
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>

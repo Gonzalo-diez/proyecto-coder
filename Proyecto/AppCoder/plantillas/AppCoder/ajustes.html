@@ -6,6 +6,7 @@
     {% if user.is_authenticated %}
         <div class="container d-flex justify-content-center align-items-center">
             <div class="text-center">
+                <img src="{{ user.usuario.avatar.url }}">
                 <h2>Bienvenido {{user.username}}</h2>
                 <button type="button" class="btn btn-primary"><a href="{% url 'editarUsuario' %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Editar usuario</a></button>
                 <button type="button" class="btn btn-danger"><a href="{% url 'cambiarPassword' %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Cambiar contraseña</a></button>
