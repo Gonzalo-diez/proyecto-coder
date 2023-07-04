@@ -2,7 +2,7 @@
 
 {% block content %}
 <section>
-    <div class="container">
+    <div class="container mb-3 mt-3 text-center">
         {% if object.usuario == user %}
             <h4>Editar celular</h4>
             <div class="form-group">
@@ -12,7 +12,7 @@
                 </form>
             </div>    
         {% else %} 
-            <div class="container">
+            <div class="container mb-3 mt-3 text-center">
                 <p class="text-center">No tienes permiso para editar este producto.</p>
             </div>
         {% endif%}

@@ -8,7 +8,7 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h3>{{ celular.titulo }}</h3>
+                <h3 class="text-center">{{ celular.titulo }}</h3>
               </div>
               <div class="card-body">
                 {% if celular.imagenProducto %}
@@ -22,7 +22,7 @@
                 <p>Fecha de publicación: {{ celular.fechaPublicacion }}</p>
                 <p>Contacto: {{ celular.telefonoContacto }}, {{ celular.emailContacto }}</p>
                 {% if object.usuario == user %}
-                  <button type="button" class="btn btn-primary"><a href="{% url 'editarCelular' computadora.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Editar</a></button>
+                  <button type="button" class="btn btn-primary"><a href="{% url 'editarCelular' celular.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Editar</a></button>
                   <button type="button" class="btn btn-danger"><a href="{% url 'borrarCelular' celular.id %}" class="link-light link-offset-2 link-underline link-underline-opacity-0">Eliminar</a></button>
                 {% endif %}
               </div>

@@ -10,7 +10,7 @@ class FormularioRegistroUsuario(UserCreationForm):
     username = forms.CharField(max_length=20, label='Usuario', widget=forms.TextInput(attrs={'class':'form-control'}))
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    avatar = forms.ImageField(label='Avatar', required=False)
+    avatar = forms.ImageField(label='Avatar', required=True)
     
     class Meta:
         model = User
