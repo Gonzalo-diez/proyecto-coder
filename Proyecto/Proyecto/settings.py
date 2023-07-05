@@ -128,7 +128,7 @@ LOGIN_REDIRECT_URL = 'inicio'
 
 LOGIN_URL = '/login/'
 
-MEDIA_URL = '/imagenes/'
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'AppCoder/media/')
 
