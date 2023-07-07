@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-el!z%_=)g5xha1v20qb+hzn9-&=4r+*#r2q+6y2p#4*d*2yeu*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -85,14 +86,14 @@ WSGI_APPLICATION = 'Proyecto.wsgi.application'
 # Render PostgreSQL Database
 
 DATABASES = {
-    'default': {
+    'default': dj_database_url.config({
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'technohousedatabase',
         'USER': 'technohousedatabase_user',
         'PASSWORD': '3U6wmUgrS2HsBRgyHfrcE3xuFLkIK4O4',
         'HOST': 'dpg-cij3end9aq01qqnmq50g-a.ohio-postgres.render.com',
         'PORT': '5432',
-    }
+    })
 }
 
 # Password validation
