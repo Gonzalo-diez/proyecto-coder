@@ -148,7 +148,7 @@ class ConsolaDelete(DeleteView):
 
 class CelularDelete(DeleteView): 
     model = Producto
-    success_url = reverse_lazy('Inicio')
+    success_url = reverse_lazy('inicio')
     template_name = 'AppCoder/borradoCelular.html'
 
 class ComputadoraDelete(DeleteView): 
