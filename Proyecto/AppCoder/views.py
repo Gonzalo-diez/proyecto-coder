@@ -52,6 +52,10 @@ class EditarUsuario(UpdateView):
     def get_object(self):
         return self.request.user
     
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+    
 class CambiarPassword(PasswordChangeView):
     form_class = FormularioCambioPassword
     template_name = 'AppCoder/cambiopassword.html'
